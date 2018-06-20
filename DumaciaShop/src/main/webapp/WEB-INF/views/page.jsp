@@ -23,15 +23,20 @@
     
     <script>
     	window.menu = '${title}';
+    	window.contextRoot = '${contextRoot}';
 	
     </script>
 
-    <!-- Bootstrap core CSS -->
+    
+	<!-- Bootstrap core CSS -->
     <link href="${css}/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Bootswatch Shades Of Gunmetal Gray -->
-    <link href="${css}/bootswatch-slate-shades-of-gunmetal-gray.css" rel="stylesheet">
-
+    <!-- DataTables css -->
+    <link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
+    
+    <!-- Bootswatch.com --- Simplex - Mini and minimalist -->
+    <link href="${css}/bootswatch-style.css" rel="stylesheet">
+    
     <!-- Custom styles for this template -->
     <link href="${css}/styles.css" rel="stylesheet">
 
@@ -45,18 +50,25 @@
     <!-- Page Content -->
     <c:choose>
 	    <c:when test="${mappingHome == true}">
-	    	<%@include file="home.jsp" %>
+	    	<%@include file="home.jsp" 	%>
+	    </c:when>
+	    <c:when test="${mappingAllProducts == true or mappingCategoryProducts == true}">
+	    	<%@include file="products.jsp" %>
+	    </c:when>
+	    <c:when test="${mappingCart == true}">
+	    	<%@include file="cart.jsp" %>
 	    </c:when>
 	    <c:when test="${mappingAbout == true}">
 	    	<%@include file="about.jsp" %>
 	    </c:when>
-	    <c:when test="${mappingProducts == true}">
-	    	<%@include file="home.jsp" %>
-	    </c:when>
 	    <c:when test="${mappingContact == true}">
 	    	<%@include file="contact.jsp" %>
 	    </c:when>
+	    <c:when test="${mappingProductDetail == true }">
+	    	<%@include file="productdetail.jsp" %>
+    	</c:when>
 	    <c:otherwise>
+	    	Otherwise
 	    	<!--
 	    	<div class="row" style="padding-top: 36px">
 	    		<div class="col-lg-3">
@@ -76,6 +88,9 @@
     <!-- Bootstrap core JavaScript -->
     <script src="${js}/jquery.min.js"></script>
     <script src="${js}/bootstrap.bundle.min.js"></script>
+    <!-- DataTables -->
+    <script src="${js}/jquery.dataTables.js"></script>
+    <script src="${js}/dataTables.bootstrap4.js"></script>
     <!-- My JavaScript -->
     <script src="${js}/script.js"></script>
 
