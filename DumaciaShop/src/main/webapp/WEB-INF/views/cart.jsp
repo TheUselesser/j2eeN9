@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="container">
 
 	<h1 class="my-4">Shopping Cart</h1>
@@ -23,11 +25,11 @@
 						<tr>
 							<td data-th="Product">
 								<div class="row">
-									<div class="col-sm-2 hidden-xs">
+									<div class="col-lg-4 col-sm-2 hidden-xs">
 										<img src="${images}/${cartLine.product.code}.jpg"
-											alt="${cartLine.product.name} image" class="img-responsive" />
+											alt="${cartLine.product.name} image" style="width:100%" />
 									</div>
-									<div class="col-sm-10">
+									<div class="col-lg-8 col-sm-10">
 										<h4 class="nomargin">
 											${cartLine.product.name}
 											<c:if test="${cartLine.available == false}">
@@ -41,11 +43,11 @@
 							</td>
 							<td data-th="Price">${cartLine.buyingPrice}</td>
 							<td data-th="Quantity"><input type="number"
-								class="form-control text-center"
-								value="${cartLine.productCount "></td>
+								id="count_${cartLine.id}" min="1" max="3" class="form-control text-center"
+								value="${cartLine.productCount}"></td>
 							<td data-th="Subtotal" class="text-center">${cartLine.total}</td>
 							<td class="actions" data-th="">
-								<button class="btn btn-info btn-sm">
+								<button type="button" name="refreshCart" value="${cartLine.id}" class="btn btn-info btn-sm">
 									<i class="fa fa-refresh"></i>
 								</button>
 								<button class="btn btn-danger btn-sm">
@@ -78,7 +80,7 @@
 		</c:when>
 		<c:otherwise>
 
-			<div clas="jumbotron">
+			<div class="jumbotron">
 				<div class="center">
 					<strong>Your cart is empty!</strong>
 				</div>

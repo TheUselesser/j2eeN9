@@ -88,16 +88,16 @@ $(function() {
 											+ window.contextRoot
 											+ '/show/product/'
 											+ data
-											+ '" class="btn btn-outline-primary m-2"><i class="fa fa-eye" aria-hidden="true">View</i></a> &nbsp;';
+											+ '" class="btn btn-outline-primary m-2"><i class="fa fa-eye" aria-hidden="true"></i></a> &nbsp;';
 
 									if (row.quantity < 1) {
-										str += '<a href="javascript:void(0)" class="btn btn-outline-secondary m-2 disabled"><i class="fa fa-cart-plus" aria-hidden="true">Add to Cart</i></a>';
+										str += '<a href="javascript:void(0)" class="btn btn-outline-secondary m-2 disabled"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>';
 									} else {
 										str += '<a href="'
 												+ window.contextRoot
 												+ '/cart/add/product/'
 												+ data
-												+ '" class="btn btn-outline-secondary m-2"><i class="fa fa-cart-plus" aria-hidden="true">Add to Cart</i></a>';
+												+ '" class="btn btn-outline-secondary m-2"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>';
 									}
 
 									return str;

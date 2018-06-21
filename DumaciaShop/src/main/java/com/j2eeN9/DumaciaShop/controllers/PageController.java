@@ -107,16 +107,6 @@ public class PageController {
 		return mv;
 	}
 	
-	// Add to cart
-	@RequestMapping(value = "/cart/add/product/{id}")
-	public ModelAndView addToCart(@PathVariable("id")int id) {
-		ModelAndView mv = new ModelAndView("page");
-		
-		Product product = productDAO.get(id);
-		
-		return mv;
-	}
-	
 	// Signup - NOPE
 	@RequestMapping(value = "/signup")
 	public ModelAndView signup() {

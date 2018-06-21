@@ -9,19 +9,18 @@ import org.springframework.stereotype.Service;
 
 import com.j2eeN9.DumaciaShop.models.UserModel;
 import com.j2eeN9.backend.dao.CartLineDAO;
-import com.j2eeN9.backend.dao.ProductDAO;
 import com.j2eeN9.backend.dto.Cart;
 import com.j2eeN9.backend.dto.CartLine;
-import com.j2eeN9.backend.dto.Product;
 
 @Service("cartService")
 public class CartService {
 
+	
 	@Autowired
 	private CartLineDAO cartLineDAO;
 	
-	@Autowired
-	private ProductDAO productDAO;
+	//@Autowired
+	//private ProductDAO productDAO;
 		
 	@Autowired
 	private HttpSession session;
@@ -32,12 +31,10 @@ public class CartService {
 	}
 	
 	public List<CartLine> getCartLines() {
-		Cart cart = this.getCart();
-		
-		return cartLineDAO.list(cart.getId());
+		return cartLineDAO.list(getCart().getId());
 	}
 	
-	/* to update the cart count */
+	/* to update the cart count 
 	public String manageCartLine(int cartLineId, int count) {
 		
 		CartLine cartLine = cartLineDAO.get(cartLineId);		
@@ -182,5 +179,5 @@ public class CartService {
 		cartLineDAO.updateCart(cart);
 
 		return response;
-	}	
+	}	*/
 }

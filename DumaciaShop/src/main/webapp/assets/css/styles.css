@@ -65,8 +65,7 @@ body{
 }
 
 .cartImg {
-	width: 100px;
-	height: 100px;
+	width: 90%;
 }
 .unavaiable{
 	color: red;
