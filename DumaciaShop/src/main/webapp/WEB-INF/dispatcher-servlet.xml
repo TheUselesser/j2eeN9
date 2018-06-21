@@ -14,7 +14,6 @@
    ">
 
    <context:component-scan base-package="com.j2eeN9.DumaciaShop.controllers"></context:component-scan>
-   <context:component-scan base-package="com.j2eeN9.backend"></context:component-scan>
     
    
    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />

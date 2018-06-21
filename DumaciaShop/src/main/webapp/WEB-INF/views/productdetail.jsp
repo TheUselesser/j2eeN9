@@ -2,6 +2,11 @@
 
 	<div class="row">
 		
+		<!-- sidebar -->
+		<div class="col-lg-3">
+			<%@include file="./shared/sidebar.jsp" %>
+		</div>
+		
 		<!-- content -->
 		<div class="col-lg-9">
 		
@@ -57,8 +62,8 @@
 						</c:otherwise>
 					</c:choose>
 					
-					<a href="${contextRoot}/show/all/products" class="btn btn-success">Back</a>
 					
+					<a href="${contextRoot}/show/all/products" class="btn btn-success">Back</a>
 				</div>
 			
 			</div>

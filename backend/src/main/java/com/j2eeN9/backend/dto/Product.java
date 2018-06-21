@@ -42,8 +42,6 @@ public class Product implements Serializable {
 	@JsonIgnore
 	private int categoryId;
 	@Column(name = "supplier_id")
-	@JsonIgnore
-	private int supplierId;
 	
 	
 	@Transient
@@ -121,12 +119,6 @@ public class Product implements Serializable {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
-	public int getSupplierId() {
-		return supplierId;
-	}
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
-	}
 
 	
 	// toString for debugging
@@ -134,6 +126,6 @@ public class Product implements Serializable {
 	public String toString() {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
 				+ description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active
-				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + "]";
+				+ ", categoryId=" + categoryId + "]";
 	}
 }

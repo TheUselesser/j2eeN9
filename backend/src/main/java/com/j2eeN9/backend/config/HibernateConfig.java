@@ -24,7 +24,7 @@ public class HibernateConfig {
 	private final static String DB_PASSWORD = "";
 	private final static String DB_DIALECT = "org.hibernate.dialect.H2Dialect";
 	
-	@Bean
+	@Bean("dataSource")
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		

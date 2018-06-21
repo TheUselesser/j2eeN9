@@ -1,9 +1,16 @@
 package com.j2eeN9.DumaciaShop.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.j2eeN9.backend.dao.CategoryDAO;
@@ -70,7 +77,8 @@ public class PageController {
 		Category category = null;
 		category = categoryDAO.get(id);
 		
-		mv.addObject("title", category.getName());
+		mv.addObject("title", "Products");
+		mv.addObject("subtitle", "- " + category.getName() + " ");
 		
 		mv.addObject("categories", categoryDAO.list());
 		mv.addObject("category", category);
@@ -88,9 +96,10 @@ public class PageController {
 		Product product = productDAO.get(id);
 		Category category = categoryDAO.get(product.getCategoryId());
 		
-		productDAO.update(product);
+		mv.addObject("categories", categoryDAO.list());
 		
-		mv.addObject("title", product.getName());
+		mv.addObject("title", category.getName());
+		mv.addObject("subtitle", "- " + product.getName() + " ");
 		mv.addObject("product", product);
 		mv.addObject("category", category);
 		
@@ -99,13 +108,67 @@ public class PageController {
 	}
 	
 	// Shopping cart
-	@RequestMapping(value = "/onsession/cart")
+	@RequestMapping(value = "/cart/view")
 	public ModelAndView cart() {
 		ModelAndView mv = new ModelAndView("page");
-		
+
 		mv.addObject("title", "Your Shopping Cart");
 		
 		mv.addObject("mappingCart", true);
 		return mv;
+	}
+	
+	// Add to cart
+	@RequestMapping(value = "/cart/add/product/{id}")
+	public ModelAndView addToCart(@PathVariable("id")int id) {
+		ModelAndView mv = new ModelAndView("page");
+		
+		Product product = productDAO.get(id);
+		
+		return mv;
+	}
+	
+	// Signup - NOPE
+	@RequestMapping(value = "/signup")
+	public ModelAndView signup() {
+		ModelAndView mv = new ModelAndView("login");
+		
+		mv.addObject("title", "Sign Up");
+		
+		return null;
+	}
+	
+	// Login
+	@RequestMapping(value = "/login")
+	public ModelAndView loginError(@RequestParam(name="error", required=false)String error) {
+		ModelAndView mv = new ModelAndView("login");
+
+		if(error!=null) {
+			mv.addObject("errorMessage", "Invalid Username or Password!");
+		}
+		
+		mv.addObject("title", "Login");
+		
+		return mv;
+	}
+	
+	// Logout
+	@RequestMapping(value= "/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		if(auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		
+		return "redirect:/home";
+	}
+	
+	// Access Denied - NOPE
+	@RequestMapping(value = "/access-denied")
+	public ModelAndView accessDenied() {
+		
+		
+		return null;
 	}
 }
