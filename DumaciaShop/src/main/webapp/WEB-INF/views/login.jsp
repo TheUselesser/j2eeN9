@@ -32,6 +32,9 @@
 <!-- Bootswatch.com --- Simplex - Mini and minimalist -->
 <link href="${css}/bootswatch-style.css" rel="stylesheet">
 
+<!-- Colorful css -->
+<link href="${css}/colorful.css" rel="stylesheet">
+
 <!-- Custom styles for this template -->
 <link href="${css}/styles.css" rel="stylesheet">
 
@@ -71,7 +74,7 @@
 									<p style="color:red">${errorMessage}</p>
 								</c:if>
 									
-									<button id="loginButton" class="btn btn-primary btn-block">Login</button>
+									<button id="loginButton" class="btn btn-outline-secondary btn-block">Login</button>
 									<p>
 										New Member? <a href="${contextRoot}/signup" class="disabled">Sign
 											up</a>

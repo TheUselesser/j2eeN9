@@ -3,15 +3,13 @@
 	<h1 class="my-4">Shopping Cart</h1>
 
 	<c:if test="${not empty message}">
-	
+
 		<div class="alert alert-infor">
-		
-			<h3 class="text-center">
-				${message}
-			</h3>
-		
+
+			<h3 class="text-center">${message}</h3>
+
 		</div>
-	
+
 	</c:if>
 
 	<c:choose>
@@ -37,7 +35,7 @@
 								<div class="row">
 									<div class="col-lg-4 col-sm-2 hidden-xs">
 										<img src="${images}/${cartLine.product.code}.jpg"
-											alt="${cartLine.product.name} image" style="width:100%" />
+											alt="${cartLine.product.name} image" style="width: 100%" />
 									</div>
 									<div class="col-lg-8 col-sm-10">
 										<h4 class="nomargin">
@@ -51,18 +49,25 @@
 									</div>
 								</div>
 							</td>
-							<td data-th="Price">${cartLine.buyingPrice}</td>
+							<td data-th="Price">&#36; ${cartLine.buyingPrice}</td>
 							<td data-th="Quantity"><input type="number"
-								id="count_${cartLine.id}" min="1" max="3" class="form-control text-center"
+								id="count_${cartLine.id}" min="1" max="3"
+								class="form-control text-center"
 								value="${cartLine.productCount}"></td>
-							<td data-th="Subtotal" class="text-center">${cartLine.total}</td>
+							<td data-th="Subtotal" class="text-center">&#36;
+								${cartLine.total}</td>
 							<td class="actions" data-th="">
-								<button type="button" name="refreshCart" value="${cartLine.id}" class="btn btn-info btn-sm">
-									<i class="fa fa-refresh" aria-hidden="true"> </i>
-								</button>
-								<button class="btn btn-danger btn-sm">
-									<i class="fa fa-trash-o" aria-hidden="true"> </i>
-								</button>
+								<!--<c:if test="${cartLine.available == true}">
+									 <button type="button" name="refreshCart"
+										class="btn btn-info btn-sm" value="${cartLine.id}">
+										<i class="fa fa-refresh" aria-hidden="true"> </i>
+									</button> </c:if>--> <a
+								href="${contextRoot}/cart/${cartLine.id}/update?count=${cartLine.productCount}"
+								class="btn btn-danger btn-sm"><i class="fa fa-refresh"
+									aria-hidden="true"> </i> </a> <a
+								href="${contextRoot}/cart/${cartLine.id}/delete"
+								class="btn btn-danger btn-sm"><i class="fa fa-trash-0"
+									aria-hidden="true"> </i></a>
 							</td>
 						</tr>
 
@@ -72,14 +77,16 @@
 				</tbody>
 				<tfoot>
 					<tr class="visible-xs">
-						<td class="text-center"><strong>Total ${userModel.cart.grandTotal}</strong></td>
+						<td class="text-center"><strong>Total &#36;
+								${userModel.cart.grandTotal}</strong></td>
 					</tr>
 					<tr>
 						<td><a href="${contextRoot}/show/all/products"
 							class="btn btn-outline-primary m-2"><i
 								class="fa fa-angle-left"></i> Continue Shopping</a></td>
 						<td colspan="2" class="hidden-xs"></td>
-						<td class="hidden-xs text-center"><strong>Total ${userModel.cart.grandTotal}</strong></td>
+						<td class="hidden-xs text-center"><strong>Total
+								&#36; ${userModel.cart.grandTotal}</strong></td>
 						<td><a href="#" class="btn btn-outline-secondary m-2">Checkout
 								<i class="fa fa-angle-right"></i>
 						</a></td>

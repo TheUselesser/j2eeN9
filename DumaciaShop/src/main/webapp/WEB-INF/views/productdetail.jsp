@@ -52,7 +52,7 @@
 					<p>${product.description }</p>
 					<hr/>
 					
-					<h4>Price: <strong>${product.unitPrice} &#8363;</strong></h4>
+					<h4>Price: <strong>&#36; ${product.unitPrice}</strong></h4>
 					<hr/>
 					
 					<c:choose>
@@ -62,7 +62,7 @@
 						</c:when>
 						<c:otherwise>
 							<h6>Avaiable: ${product.quantity}</h6>
-							<a href="${contextRoot}/cart/add/product/${product.id}" class="btn btn-outline-secondary m-2"><i class="fa fa-cart-plus" aria-hidden="true"> Add to Cart</i></a>
+							<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-outline-secondary m-2"><i class="fa fa-cart-plus" aria-hidden="true"> Add to Cart</i></a>
 						</c:otherwise>
 					</c:choose>
 					

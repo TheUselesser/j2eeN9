@@ -35,7 +35,9 @@ public class CartService {
 	public List<CartLine> getCartLines() {
 		return cartLineDAO.list(getCart().getId());
 	}
-
+	
+	
+	/* to update the cart count */
 	public String updateCartLine(int cartLineId, int count) {
 
 		CartLine cartLine = cartLineDAO.get(cartLineId);
@@ -66,37 +68,24 @@ public class CartService {
 			return "result=updated";
 		}
 	}
-	/* to update the cart count */
-	public String manageCartLine(int cartLineId, int count) {
-		
-		CartLine cartLine = cartLineDAO.get(cartLineId);		
 
-		double oldTotal = cartLine.getTotal();
+	public String deleteCartLine(int cartLineId) {
+		CartLine cartLine = cartLineDAO.get(cartLineId);
 
+		if(cartLine == null) {
+			return "result=error";
+		}
 		
-		Product product = cartLine.getProduct();
-		
-		// check if that much quantity is available or not
-		if(product.getQuantity() < count) {
-			return "result=unavailable";		
-		}	
-		
-		// update the cart line
-		cartLine.setProductCount(count);
-		cartLine.setBuyingPrice(product.getUnitPrice());
-		cartLine.setTotal(product.getUnitPrice() * count);
-		cartLineDAO.update(cartLine);
-
-	
-		// update the cart
-		Cart cart = this.getCart();
-		cart.setGrandTotal(cart.getGrandTotal() - oldTotal + cartLine.getTotal());
+		Cart cart = this.getCart();	
+		cart.setGrandTotal(cart.getGrandTotal() - cartLine.getTotal());
+		cart.setCartLines(cart.getCartLines() - 1);		
 		cartLineDAO.updateCart(cart);
 		
-		return "result=updated";
+		// remove the cartLine
+		cartLineDAO.remove(cartLine);
+				
+		return "result=deleted";
 	}
-
-
 
 	public String addCartLine(int productId) {		
 		Cart cart = this.getCart();
@@ -127,7 +116,7 @@ public class CartService {
 			// check if the cartLine has been already reached to maximum count
 			if(cartLine.getProductCount() < 3) {
 				// call the manageCartLine method to increase the count
-				response = this.manageCartLine(cartLine.getId(), cartLine.getProductCount() + 1);				
+				response = this.updateCartLine(cartLine.getId(), cartLine.getProductCount() + 1);				
 			}			
 			else {				
 				response = "result=maximum";				
@@ -136,23 +125,7 @@ public class CartService {
 		return response;
 	}
 
-	public String removeCartLine(int cartLineId) {
-		
-		CartLine cartLine = cartLineDAO.get(cartLineId);
-		// deduct the cart
-		// update the cart
-		Cart cart = this.getCart();	
-		cart.setGrandTotal(cart.getGrandTotal() - cartLine.getTotal());
-		cart.setCartLines(cart.getCartLines() - 1);		
-		cartLineDAO.updateCart(cart);
-		
-		// remove the cartLine
-		cartLineDAO.remove(cartLine);
-				
-		return "result=deleted";
-	}
-
-
+	/* EEEEEEEEEEEE */
 	public String validateCartLine() {
 		Cart cart = this.getCart();
 		List<CartLine> cartLines = cartLineDAO.list(cart.getId());

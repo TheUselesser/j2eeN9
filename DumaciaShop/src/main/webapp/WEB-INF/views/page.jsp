@@ -38,7 +38,7 @@
 <!-- Bootswatch.com --- Simplex - Mini and minimalist -->
 <link href="${css}/bootswatch-style.css" rel="stylesheet">
 
-<!--  -->
+<!-- Colorful css -->
 <link href="${css}/colorful.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->

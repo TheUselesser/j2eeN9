@@ -1,5 +1,7 @@
 package com.j2eeN9.DumaciaShop.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,9 +32,17 @@ public class PageController {
 	@RequestMapping(value = {"/", "/index", "/home"})
 	public ModelAndView home() {
 		ModelAndView mv = new ModelAndView("page");
+		List<Product> products = productDAO.listActiveProducts();
+		// should be a random int array[6]
+		int[] a = {11, 22, 33, 44, 27, 36};
+		//
+		
 		mv.addObject("title", "Home");
 		
 		mv.addObject("categories", categoryDAO.list());
+		for (int i = 1; i <= 6; i++) {
+			mv.addObject("product"+i, products.get(a[i-1]));
+		}
 		
 		mv.addObject("mappingHome", true);
 		return mv;
