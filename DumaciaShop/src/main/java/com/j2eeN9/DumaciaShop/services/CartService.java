@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.j2eeN9.DumaciaShop.models.UserModel;
 import com.j2eeN9.backend.dao.CartLineDAO;
+import com.j2eeN9.backend.dao.ProductDAO;
 import com.j2eeN9.backend.dto.Cart;
 import com.j2eeN9.backend.dto.CartLine;
+import com.j2eeN9.backend.dto.Product;
 
 @Service("cartService")
 public class CartService {
@@ -19,8 +21,8 @@ public class CartService {
 	@Autowired
 	private CartLineDAO cartLineDAO;
 	
-	//@Autowired
-	//private ProductDAO productDAO;
+	@Autowired
+	private ProductDAO productDAO;
 		
 	@Autowired
 	private HttpSession session;
@@ -33,8 +35,38 @@ public class CartService {
 	public List<CartLine> getCartLines() {
 		return cartLineDAO.list(getCart().getId());
 	}
-	
-	/* to update the cart count 
+
+	public String updateCartLine(int cartLineId, int count) {
+
+		CartLine cartLine = cartLineDAO.get(cartLineId);
+		
+		if(cartLine == null) {
+			return "result=error";
+		}
+		else {
+			Product product = cartLine.getProduct();
+			
+			double oldTotal = cartLine.getTotal();
+			
+			if (product.getQuantity() <= count) {
+				count = product.getQuantity();
+			}
+			
+			cartLine.setProductCount(count);
+			cartLine.setBuyingPrice(product.getUnitPrice());
+			cartLine.setTotal(product.getUnitPrice() * count);
+			
+			cartLineDAO.update(cartLine);
+			
+			Cart cart = this.getCart();
+			
+			cart.setGrandTotal(cart.getGrandTotal() - oldTotal + cartLine.getTotal());
+			cartLineDAO.updateCart(cart);
+			
+			return "result=updated";
+		}
+	}
+	/* to update the cart count */
 	public String manageCartLine(int cartLineId, int count) {
 		
 		CartLine cartLine = cartLineDAO.get(cartLineId);		
@@ -179,5 +211,5 @@ public class CartService {
 		cartLineDAO.updateCart(cart);
 
 		return response;
-	}	*/
+	}
 }

@@ -1,8 +1,18 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <div class="container">
 
 	<h1 class="my-4">Shopping Cart</h1>
+
+	<c:if test="${not empty message}">
+	
+		<div class="alert alert-infor">
+		
+			<h3 class="text-center">
+				${message}
+			</h3>
+		
+		</div>
+	
+	</c:if>
 
 	<c:choose>
 
@@ -48,10 +58,10 @@
 							<td data-th="Subtotal" class="text-center">${cartLine.total}</td>
 							<td class="actions" data-th="">
 								<button type="button" name="refreshCart" value="${cartLine.id}" class="btn btn-info btn-sm">
-									<i class="fa fa-refresh"></i>
+									<i class="fa fa-refresh" aria-hidden="true"> </i>
 								</button>
 								<button class="btn btn-danger btn-sm">
-									<i class="fa fa-trash-o"></i>
+									<i class="fa fa-trash-o" aria-hidden="true"> </i>
 								</button>
 							</td>
 						</tr>
