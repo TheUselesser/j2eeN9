@@ -26,10 +26,15 @@ public class CartService {
 	@Autowired
 	private HttpSession session;
 	
+	
+	private Cart getCart() {
+		return ((UserModel)session.getAttribute("userModel")).getCart();
+	}
+	
 	public List<CartLine> getCartLines() {
-
-		return cartLineDAO.list(getCart().getId());
-
+		Cart cart = this.getCart();
+		
+		return cartLineDAO.list(cart.getId());
 	}
 	
 	/* to update the cart count */
@@ -101,11 +106,6 @@ public class CartService {
 		}		
 		return response;
 	}
-	
-	private Cart getCart() {
-		return ((UserModel)session.getAttribute("userModel")).getCart();
-	}
-
 
 	public String removeCartLine(int cartLineId) {
 		

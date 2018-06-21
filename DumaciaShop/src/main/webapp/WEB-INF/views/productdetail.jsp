@@ -1,3 +1,7 @@
+<script>
+	window.pdtitle = '${title}';
+</script>
+
 <div class="container">
 
 	<div class="row">
@@ -54,16 +58,16 @@
 					<c:choose>
 						<c:when test="${product.quantity < 1}">
 							<h6>Avaiable: <span style="color:red">Out of stock!</span></h6>
-							<a href="javascript:void(0)" class="btn btn-success disabled"><strike>Add to cart</strike></a>
+							<a href="javascript:void(0)" class="btn btn-outline-secondary m-2 disabled"><strike><i class="fa fa-cart-plus" aria-hidden="true">Add to Cart</i></strike></a>
 						</c:when>
 						<c:otherwise>
 							<h6>Avaiable: ${product.quantity}</h6>
-							<a href="${contextRoot}/cart/add/product/${product.id}" class="btn btn-success">Add to cart</a>
+							<a href="${contextRoot}/cart/add/product/${product.id}" class="btn btn-outline-secondary m-2"><i class="fa fa-cart-plus" aria-hidden="true">Add to Cart</i></a>
 						</c:otherwise>
 					</c:choose>
 					
 					
-					<a href="${contextRoot}/show/all/products" class="btn btn-success">Back</a>
+					<a href="${contextRoot}/show/all/products" class="btn btn-outline-primary m-2">Back</a>
 				</div>
 			
 			</div>

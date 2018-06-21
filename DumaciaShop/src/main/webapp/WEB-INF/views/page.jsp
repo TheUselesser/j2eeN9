@@ -20,10 +20,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Dumacia Shop ${subtitle}- ${title}</title>
+<title>Dumacia Shop - ${subtitle} - ${title}</title>
 
 <script>
 	window.menu = '${title}';
+	window.menuitem = '${subtitle}';
 	window.contextRoot = '${contextRoot}';
 </script>
 
@@ -37,8 +38,14 @@
 <!-- Bootswatch.com --- Simplex - Mini and minimalist -->
 <link href="${css}/bootswatch-style.css" rel="stylesheet">
 
+<!--  -->
+<link href="${css}/colorful.css" rel="stylesheet">
+
 <!-- Custom styles for this template -->
 <link href="${css}/styles.css" rel="stylesheet">
+
+<!-- Fontawesome 4 -->
+<link href="https://fontawesome.com/v4.7.0/assets/font-awesome/css/font-awesome.css">
 
 </head>
 

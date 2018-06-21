@@ -51,21 +51,6 @@ VALUES ('Thanh', 'Dang', 'USER', true, '123456', '14520832@gm.uit.edu.vn', '1234
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
 VALUES ('Viet', 'Hoang', 'USER', true, '123456', '14521080@gm.uit.edu.vn', '123456789');
-
-CREATE TABLE address (
-	id IDENTITY,
-	user_id int,
-	address_line_one VARCHAR(100),
-	address_line_two VARCHAR(100),
-	city VARCHAR(20),
-	state VARCHAR(20),
-	country VARCHAR(20),
-	postal_code VARCHAR(10),
-	is_billing BOOLEAN,
-	is_shipping BOOLEAN,
-	CONSTRAINT fk_address_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id),
-	CONSTRAINT pk_address_id PRIMARY KEY (id)
-);
 -----------------------------------------------------------------------------------------------
 
 ----------PRODUCT------------------------------------------------------------------------------
@@ -110,12 +95,8 @@ CREATE TABLE order_detail (
 	user_id int,
 	order_total DECIMAL(10,2),
 	order_count int,
-	shipping_id int,
-	billing_id int,
 	order_date date,
 	CONSTRAINT fk_order_detail_user_id FOREIGN KEY (user_id) REFERENCES user_detail (id),
-	CONSTRAINT fk_order_detail_shipping_id FOREIGN KEY (shipping_id) REFERENCES address (id),
-	CONSTRAINT fk_order_detail_billing_id FOREIGN KEY (billing_id) REFERENCES address (id),
 	CONSTRAINT pk_order_detail_id PRIMARY KEY (id)
 );
 

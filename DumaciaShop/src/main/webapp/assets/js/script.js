@@ -1,8 +1,5 @@
 $(function() {
 	switch (menu) {
-	case 'Home':
-		$('#home').addClass('active');
-		break;
 	case 'All Products':
 		$('#products').addClass('active');
 		break;
@@ -14,7 +11,15 @@ $(function() {
 		break;
 	case 'Products':
 		$('#products').addClass('active');
+		$('#id_' + menuitem).addClass('active');
+		console.log(menuitem);
+		break;
+	case pdtitle:
+		$('#products').addClass('active');
 		$('#id_' + menu).addClass('active');
+		break;
+	case 'Shopping Cart':
+		$('#userBtn').addClass('active');
 		break;
 	default:
 		break;
@@ -83,16 +88,16 @@ $(function() {
 											+ window.contextRoot
 											+ '/show/product/'
 											+ data
-											+ '" class="btn btn-primary">View</a> &nbsp;';
+											+ '" class="btn btn-outline-primary m-2"><i class="fa fa-eye" aria-hidden="true">View</i></a> &nbsp;';
 
 									if (row.quantity < 1) {
-										str += '<a href="javascript:void(0)" class="btn btn-success disabled">Add to Cart</a>';
+										str += '<a href="javascript:void(0)" class="btn btn-outline-secondary m-2 disabled"><i class="fa fa-cart-plus" aria-hidden="true">Add to Cart</i></a>';
 									} else {
 										str += '<a href="'
 												+ window.contextRoot
 												+ '/cart/add/product/'
 												+ data
-												+ '" class="btn btn-success">Add to Cart</a>';
+												+ '" class="btn btn-outline-secondary m-2"><i class="fa fa-cart-plus" aria-hidden="true">Add to Cart</i></a>';
 									}
 
 									return str;

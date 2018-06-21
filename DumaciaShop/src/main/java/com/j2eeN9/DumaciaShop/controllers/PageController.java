@@ -78,7 +78,7 @@ public class PageController {
 		category = categoryDAO.get(id);
 		
 		mv.addObject("title", "Products");
-		mv.addObject("subtitle", "- " + category.getName() + " ");
+		mv.addObject("subtitle", category.getName());
 		
 		mv.addObject("categories", categoryDAO.list());
 		mv.addObject("category", category);
@@ -99,22 +99,11 @@ public class PageController {
 		mv.addObject("categories", categoryDAO.list());
 		
 		mv.addObject("title", category.getName());
-		mv.addObject("subtitle", "- " + product.getName() + " ");
+		mv.addObject("subtitle", product.getName());
 		mv.addObject("product", product);
 		mv.addObject("category", category);
 		
 		mv.addObject("mappingProductDetail", true);
-		return mv;
-	}
-	
-	// Shopping cart
-	@RequestMapping(value = "/cart/view")
-	public ModelAndView cart() {
-		ModelAndView mv = new ModelAndView("page");
-
-		mv.addObject("title", "Your Shopping Cart");
-		
-		mv.addObject("mappingCart", true);
 		return mv;
 	}
 	

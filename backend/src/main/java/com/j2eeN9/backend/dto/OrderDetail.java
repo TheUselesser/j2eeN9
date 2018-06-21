@@ -33,10 +33,6 @@ public class OrderDetail implements Serializable {
 	private User user;
 	@Column(name = "order_total")
 	private double orderTotal;
-	@ManyToOne
-	private Address shipping;
-	@ManyToOne
-	private Address billing;
 	@OneToMany(mappedBy="orderDetail", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<OrderItem> orderItems = new ArrayList<>();
 	
@@ -75,18 +71,6 @@ public class OrderDetail implements Serializable {
 	}
 	public void setOrderTotal(double orderTotal) {
 		this.orderTotal = orderTotal;
-	}
-	public Address getShipping() {
-		return shipping;
-	}
-	public void setShipping(Address shipping) {
-		this.shipping = shipping;
-	}
-	public Address getBilling() {
-		return billing;
-	}
-	public void setBilling(Address billing) {
-		this.billing = billing;
 	}
 	public List<OrderItem> getOrderItems() {
 		return orderItems;

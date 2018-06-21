@@ -63,3 +63,11 @@ body{
 	table#cart tfoot td .btn{display:block;}
 	
 }
+
+.cartImg {
+	width: 100px;
+	height: 100px;
+}
+.unavaiable{
+	color: red;
+}
